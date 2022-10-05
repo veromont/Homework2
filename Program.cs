@@ -1,50 +1,45 @@
-﻿class Program
+﻿using System.Xml.Linq;
+
+class Program
 {
     static void Main()
     {
-        Mountain Hoverla = new Mountain("Hoverla");
-        Mountain Everest = new Mountain("Everest");
-        River Seym = new River("Seym");
-        Hoverla.GetInformation();
-        Everest.GetInformation();
-        Seym.GetInformation();
-        Hoverla.PrintInformation();
+        Mountain Montblanc = new Mountain("Mont Blanc");
+        River Dnipro = new River("Dnipro");
+        Montblanc.GetInformation();
+        Dnipro.GetInformation();
+        Montblanc.PrintInformation();
         Console.WriteLine();
-        Everest.PrintInformation();
-        Console.WriteLine();
-        Seym.PrintInformation();
+        Dnipro.PrintInformation();
     }
 }
 
-abstract class Geographical_object
+interface IGeographicalObject
 {
-    protected int x;
-    protected int y;
-    protected string name;
-    protected string? description;
-    protected Geographical_object(string naming)
-    {
-        name = naming;
-        x = 0;
-        y = 0;
-        description = "";
-    }
-    public virtual void GetInformation() { }
-    public virtual void PrintInformation() { }
+    int x { get; set; }
+    int y { get; set; }
+    string name { get; set; }
+    string? description { get; set; }
+    public void GetInformation();
+    public void PrintInformation();
 }
-
-class River : Geographical_object
+class River: IGeographicalObject
 {
+    public int x { get; set; }
+    public int y { get; set; }
+    public string name { get; set; }
+    public string? description { get; set; }
+
     double streamSpeed;
     double length;
-    public River (string naming) : base(naming)
+    public River (string naming)
     {
         name = naming;
         x = 0;
         y = 0;
         description = "";
     }
-    public override void GetInformation()
+    public void GetInformation()
     {
         Console.WriteLine("Geographical object: " + name);
         Console.WriteLine();
@@ -72,7 +67,7 @@ class River : Geographical_object
         Console.WriteLine("Enter longtitude coordinate x:");
         int y1;
         t = Console.ReadLine();
-        if(int.TryParse(t, out y1))
+        if (int.TryParse(t, out y1))
         {
             y = y1;
         }
@@ -98,7 +93,7 @@ class River : Geographical_object
         t = Console.ReadLine();
         if (double.TryParse(t, out s))
         {
-            streamSpeed  = s;
+            streamSpeed = s;
         }
         else
         {
@@ -133,10 +128,10 @@ class River : Geographical_object
         length = l;
     }
 
-    public override void PrintInformation() 
+    public void PrintInformation()
     {
         Console.WriteLine("Name: " + name);
-        Console.WriteLine("Coordinates: " + x + ", "  +y);
+        Console.WriteLine("Coordinates: " + x + ", " + y);
         Console.WriteLine("Stream speed:  " + streamSpeed + " sm per second");
         Console.WriteLine("Length is: " + length + " km");
         if (description != "")
@@ -147,17 +142,22 @@ class River : Geographical_object
     }
 }
 
-class Mountain : Geographical_object
+class Mountain : IGeographicalObject
 {
+    public int x { get; set; }
+    public int y { get; set; }
+    public string name { get; set; }
+    public string? description { get; set; }
+
     double peak;
-    public Mountain (string naming) : base(naming)
+    public Mountain(string naming)
     {
         name = naming;
         x = 0;
         y = 0;
         description = null;
     }
-    public override void GetInformation()
+    public void GetInformation()
     {
         Console.WriteLine("Geographical object: " + name);
         Console.WriteLine();
@@ -222,10 +222,10 @@ class Mountain : Geographical_object
                 Console.WriteLine("Enter eligible value, please: ");
                 t = Console.ReadLine();
             }
-        } 
+        }
         peak = p;
     }
-    public override void PrintInformation()
+    public void PrintInformation()
     {
         Console.WriteLine("Name: " + name);
         Console.WriteLine("Coordinates: " + x + ", " + y);
@@ -237,3 +237,4 @@ class Mountain : Geographical_object
         }
     }
 }
+
