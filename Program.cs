@@ -1,91 +1,239 @@
-using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
-
-namespace tovar
+﻿class Program
 {
-    internal static class Program
+    static void Main()
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+        Mountain Hoverla = new Mountain("Hoverla");
+        Mountain Everest = new Mountain("Everest");
+        River Seym = new River("Seym");
+        Hoverla.GetInformation();
+        Everest.GetInformation();
+        Seym.GetInformation();
+        Hoverla.PrintInformation();
+        Console.WriteLine();
+        Everest.PrintInformation();
+        Console.WriteLine();
+        Seym.PrintInformation();
+    }
+}
 
+abstract class Geographical_object
+{
+    protected int x;
+    protected int y;
+    protected string name;
+    protected string? description;
+    protected Geographical_object(string naming)
+    {
+        name = naming;
+        x = 0;
+        y = 0;
+        description = "";
+    }
+    public virtual void GetInformation() { }
+    public virtual void PrintInformation() { }
+}
+
+class River : Geographical_object
+{
+    double streamSpeed;
+    double length;
+    public River (string naming) : base(naming)
+    {
+        name = naming;
+        x = 0;
+        y = 0;
+        description = "";
+    }
+    public override void GetInformation()
+    {
+        Console.WriteLine("Geographical object: " + name);
+        Console.WriteLine();
+
+        Console.WriteLine("Enter latitude coordinate x:");
+        int x1;
+        string? t = Console.ReadLine();
+        if (int.TryParse(t, out x1))
+        {
+            x = x1;
+        }
+        else
+        {
+            Console.WriteLine("Enter eligible value, please: ");
+            t = Console.ReadLine();
+            while (int.TryParse(t, out x1) != true)
+            {
+                Console.WriteLine("Enter eligible value, please: ");
+                t = Console.ReadLine();
+            }
+        }
+        x = x1;
+
+
+        Console.WriteLine("Enter longtitude coordinate x:");
+        int y1;
+        t = Console.ReadLine();
+        if(int.TryParse(t, out y1))
+        {
+            y = y1;
+        }
+        else
+        {
+            Console.WriteLine("Enter eligible value, please: ");
+            t = Console.ReadLine();
+            while (int.TryParse(t, out y1) != true)
+            {
+                Console.WriteLine("Enter eligible value, please: ");
+                t = Console.ReadLine();
+            }
+        }
+        y = y1;
+
+        Console.WriteLine("Enter description (optional):");
+        t = Console.ReadLine();
+        this.description = t;
+
+
+        Console.WriteLine("Enter stream speed:");
+        double s;
+        t = Console.ReadLine();
+        if (double.TryParse(t, out s))
+        {
+            streamSpeed  = s;
+        }
+        else
+        {
+            Console.WriteLine("Enter eligible value, please: ");
+            t = Console.ReadLine();
+            while (double.TryParse(t, out s) != true)
+            {
+                Console.WriteLine("Enter eligible value, please: ");
+                t = Console.ReadLine();
+            }
+        }
+        streamSpeed = s;
+
+
+        Console.WriteLine("Enter length:");
+        double l;
+        t = Console.ReadLine();
+        if (double.TryParse(t, out l))
+        {
+            length = l;
+        }
+        else
+        {
+            Console.WriteLine("Enter eligible value, please: ");
+            t = Console.ReadLine();
+            while (double.TryParse(t, out l) != true)
+            {
+                Console.WriteLine("Enter eligible value, please: ");
+                t = Console.ReadLine();
+            }
+        }
+        length = l;
+    }
+
+    public override void PrintInformation() 
+    {
+        Console.WriteLine("Name: " + name);
+        Console.WriteLine("Coordinates: " + x + ", "  +y);
+        Console.WriteLine("Stream speed:  " + streamSpeed + " sm per second");
+        Console.WriteLine("Length is: " + length + " km");
+        if (description != "")
+        {
+            Console.WriteLine("Additional information: ");
+            Console.WriteLine(description);
         }
     }
-    class Date
+}
+
+class Mountain : Geographical_object
+{
+    double peak;
+    public Mountain (string naming) : base(naming)
     {
-        public int year;
-        public int month;
-        public int day;
-        public Date(int d, int m, int y)
-        {
-            day = d;
-            month = m;
-            year = y;
-        }
-        public string Print()
-        {
-            string result = day + "." + month + "." + year;
-            return result;
-        }
+        name = naming;
+        x = 0;
+        y = 0;
+        description = null;
     }
-    class Goods
+    public override void GetInformation()
     {
-        public double price;
-        public string name;
-        public string description;
-        public Date date;
-        public string country;
-        public Goods(double price, string name, Date date, string country)
+        Console.WriteLine("Geographical object: " + name);
+        Console.WriteLine();
+        Console.WriteLine("Enter latitude coordinate x:");
+        int x1;
+        string? t = Console.ReadLine();
+        if (int.TryParse(t, out x1))
         {
-            this.price = price;
-            this.name = name;
-            this.description = "";
-            this.date = date;
-            this.country = country;
+            x = x1;
         }
-    }
-    class FoodProducts : Goods
-    {
-        public Date? expireDate;
-        public int amountLeft;
-        public string measure;
-        public FoodProducts(double price, string name, Date date, string country) : base(price, name, date, country)
+        else
         {
-            expireDate = null;
-            amountLeft = 0;
-            measure = "";
-            this.description = "";
-            this.price = price;
-            this.name = name;
-            this.date = date;
-            this.country = country;
+            Console.WriteLine("Enter eligible value, please: ");
+            t = Console.ReadLine();
+            while (int.TryParse(t, out x1) != true)
+            {
+                Console.WriteLine("Enter eligible value, please: ");
+                t = Console.ReadLine();
+            }
         }
-    }
-    class Books : Goods
-    {
-        public int amountPages;
-        public string author;
-        public string pubHouse;
-        public Books(double price, string name, Date date, string country) : base(price, name, date, country)
+        x = x1;
+
+
+        Console.WriteLine("Enter longtitude coordinate x:");
+        int y1;
+        t = Console.ReadLine();
+        if (int.TryParse(t, out y1))
         {
-            this.amountPages = 0;
-            this.author = "";
-            this.pubHouse = "";
-            this.description = "";
-            this.price = price;
-            this.name = name;
-            this.date = date;
-            this.country = country;
+            y = y1;
         }
+        else
+        {
+            Console.WriteLine("Enter eligible value, please: ");
+            t = Console.ReadLine();
+            while (int.TryParse(t, out y1) != true)
+            {
+                Console.WriteLine("Enter eligible value, please: ");
+                t = Console.ReadLine();
+            }
+        }
+        y = y1;
+
+        Console.WriteLine("Enter description (optional):");
+        t = Console.ReadLine();
+        description = t;
+
+
+        Console.WriteLine("Enter elevation:");
+        double p;
+        t = Console.ReadLine();
+
+        if (double.TryParse(t, out p))
+        {
+            peak = p;
+        }
+        else
+        {
+            Console.WriteLine("Enter eligible value, please: ");
+            t = Console.ReadLine();
+            while (double.TryParse(t, out p) != true)
+            {
+                Console.WriteLine("Enter eligible value, please: ");
+                t = Console.ReadLine();
+            }
+        } 
+        peak = p;
     }
-    static class GlobalLists
+    public override void PrintInformation()
     {
-        public static List<FoodProducts> Food = new List<FoodProducts>();
-        public static List<Books> Books = new List<Books>();
+        Console.WriteLine("Name: " + name);
+        Console.WriteLine("Coordinates: " + x + ", " + y);
+        Console.WriteLine("Elevation:  " + peak + " m");
+        if (description != "")
+        {
+            Console.WriteLine("Additional information: ");
+            Console.WriteLine(description);
+        }
     }
 }
