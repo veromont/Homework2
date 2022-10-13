@@ -2,10 +2,9 @@ using System;
 
 namespace tovar
 {
-
-    public partial class Form1 : Form
+    public partial class List : Form
     {
-        public Form1()
+        public List()
         {
             // creates 3 products
             Date date1 = new Date(12, 12, 2020);
@@ -32,136 +31,293 @@ namespace tovar
             Twilight.pubHouse = "John Wolf";
             Twilight.description = "About three things I was absolutely positive.First, Edward was a vampire.Second, there was a part of him—and I didn't know how dominant that part might be—that thirsted for my blood.And third, I was unconditionally and irrevocably in love with him.Deeply seductive and extraordinarily suspenseful, Twilight is a love story with bite.";
 
-            GlobalLists.Food.Add(Cheese);
-            GlobalLists.Food.Add(Milk);
-            
-            GlobalLists.Books.Add(Twilight);
+            Globals.Food.Add(Cheese);
+            Globals.Food.Add(Milk);
+            Globals.Books.Add(Twilight);
 
 
             InitializeComponent();
-            toolStripButton1.Click += toolStripButton1_click;
-            toolStripButton2.Click += toolStripButton2_click;
-            toolStripButton3.Click += toolStripButton3_click;
+            NewBookButton.Click += AddBookButton;
+            NewFoodButton.Click += AddFoodButton;
+            RemoveProductButton.Click += RemoveButton;
 
 
-            dataGridView1.Rows.Add(GlobalLists.Food[0].name, "Food", GlobalLists.Food[0].date.Print(), GlobalLists.Food[0].price, GlobalLists.Food[0].country, GlobalLists.Food[0].description);
-            dataGridView1.Rows.Add(GlobalLists.Food[1].name, "Food", GlobalLists.Food[1].date.Print(), GlobalLists.Food[1].price, GlobalLists.Food[1].country, GlobalLists.Food[1].description);
-            dataGridView1.Rows.Add(GlobalLists.Books[0].name, "Book", GlobalLists.Books[0].date.Print(), GlobalLists.Books[0].price, GlobalLists.Books[0].country, GlobalLists.Books[0].description);
+            dataGridView1.Rows.Add(Globals.Food[0].name, "Food", Globals.Food[0].date.Print(), Globals.Food[0].price, Globals.Food[0].country, Globals.Food[0].description);
+            dataGridView1.Rows.Add(Globals.Food[1].name, "Food", Globals.Food[1].date.Print(), Globals.Food[1].price, Globals.Food[1].country, Globals.Food[1].description);
+            dataGridView1.Rows.Add(Globals.Books[0].name, "Book", Globals.Books[0].date.Print(), Globals.Books[0].price, Globals.Books[0].country, Globals.Books[0].description);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        }
-
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
-
-        }
-
-        private void toolStripButton1_click(object sender, EventArgs e)
-        {
-            try
+            object t = dataGridView1.CurrentCell.Value;
+            string? nameFromCell = Convert.ToString(t);
+            bool isBook = false;
+            bool isFood = false;
+            if (nameFromCell == null)
             {
-                string name = textBox2.Text;
-                double price = double.Parse(textBox3.Text);
-                string date = textBox4.Text;
-                int day = int.Parse("" + date[0] + date[1]);
-                int month = int.Parse("" + date[3] + date[4]);
-                int year = int.Parse("" + date[6] + date[7] + date[8] + date[9]);
-                Date Date = new Date(day,month,year);
-                string country = textBox5.Text;
-                int pages = int.Parse(textBox6.Text);
-                string author = textBox7.Text;
-                string pubhouse = textBox8.Text;
-                string description = textBox9.Text;
-                Books book = new Books(price,name,Date,country);
-                book.author = author;
-                book.description = description;
-                book.amountPages = pages;
-                book.pubHouse = pubhouse;
-                int n = GlobalLists.Books.Count;
-                GlobalLists.Books.Add(book);
-                dataGridView1.Rows.Add(GlobalLists.Books[n].name, "Book", GlobalLists.Books[n].date.Print(), 
-                GlobalLists.Books[n].price, GlobalLists.Books[n].country, GlobalLists.Books[n].description);
+                nameFromCell = "";
             }
-            catch
+            object? result = checkifbook(nameFromCell);
+            isBook = true;
+            if (result == null)
             {
-                MessageBox.Show("Ok, throw me some numbers");
-                textBox2.Text = "Name here";
-                textBox3.Name = "textBox3";
-                textBox4.Text = "date here";
-                textBox5.Text = "country here";
-                textBox6.Text = "Enter amount of pages";
-                textBox7.Text = "Enter author";
-                textBox8.Text = "Enter publication house";
+                result = checkifFood(nameFromCell);
+                isFood = true;
+                isBook = false;
             }
 
-        }
-        private void toolStripButton2_click(object sender, EventArgs e)
-        {
 
-            try
+            if (result == null)
             {
-                string name = textBox2.Text;
-
-                double price = double.Parse(textBox3.Text);
-
-                string date = textBox4.Text;
-
-                int day = int.Parse("" + date[0] + date[1]);
-                int month = int.Parse("" + date[3] + date[4]);
-                int year = int.Parse("" + date[6] + date[7] + date[8] + date[9]);
-                Date Date = new Date(day, month, year);
-
-                string country = textBox5.Text;
-
-                date = textBox6.Text;
-                day = int.Parse("" + date[0] + date[1]);
-                month = int.Parse("" + date[3] + date[4]);
-                year = int.Parse("" + date[6] + date[7] + date[8] + date[9]);
-                Date ExpireDate  = new Date(day, month, year);
-
-                int amountleft = int.Parse(textBox7.Text);
-
-                string measure = textBox8.Text;
-
-                string description = textBox9.Text;
-
-                FoodProducts Food = new FoodProducts(price, name, Date, country);
-                Food.amountLeft = amountleft;
-                Food.description = description;
-                Food.measure = measure;
-                Food.expireDate = ExpireDate;
-                int n = GlobalLists.Books.Count;
-                GlobalLists.Food.Add(Food);
-                dataGridView1.Rows.Add(GlobalLists.Food[n].name, "Food", GlobalLists.Food[n].date.Print(),
-                GlobalLists.Food[n].price, GlobalLists.Food[n].country, GlobalLists.Food[n].description);
+                MessageBox.Show("Bad things happen, unfortunately we couldn`t find the object, alas. " +
+                                "Try clicking on the cells from the first column.");
+                return;
             }
-            catch
+            else
             {
-                MessageBox.Show("Ok, throw me some numbers");
-                textBox2.Text = "Name here";
-                textBox3.Name = "textBox3";
-                textBox4.Text = "date here";
-                textBox5.Text = "country here";
-                textBox6.Text = "Enter expire date";
-                textBox7.Text = "Enter amount left";
-                textBox8.Text = "Enter measure";
+                if (isBook)
+                {
+                    Books? B = result as Books;
+                    string s = B.displayInfo();
+                    MessageBox.Show(s);
+                }
+                else if (isFood)
+                {
+                        FoodProducts? F = result as FoodProducts;
+                        string s = F.displayInfo();
+                        MessageBox.Show(s);
+                }
+                else
+                {
+                    MessageBox.Show("Bad things happen, unfortunately we couldn`t find the object, alas. " +
+                                "Try clicking on the cells from the first column.");
+                }
             }
         }
-        private void toolStripButton3_click(object sender, EventArgs e)
+
+        Books? checkifbook(string givenName)
         {
-            try
+            foreach (Books book in Globals.Books)
             {
-                int n = int.Parse(textBox1.Text) - 1;
-                dataGridView1.Rows.RemoveAt(n);
-                textBox1.Text = "Enter here";
-                MessageBox.Show("Deleted");
+                if (book.name == givenName)
+                {
+                    return book;
+                }
             }
-            catch(Exception ex)
+            return null;
+        }
+
+        FoodProducts? checkifFood(string givenName)
+        {
+            foreach (FoodProducts food in Globals.Food)
             {
-                MessageBox.Show("Enter row number in textbox please. It must be from 1 to " + (dataGridView1.RowCount - 1));
+                if (food.name == givenName)
+                {
+                    return food;
+                }
+            }
+            return null;
+        }
+
+        private void AddBookButton(object sender, EventArgs e)
+        {
+            Globals.RemoveMode = false;
+            Globals.AddFoodMode = false;
+            Globals.AddBookMode = true;
+            DisplayNeeded(Globals.AddFoodMode, Globals.AddBookMode, Globals.RemoveMode);
+        }
+        private void AddFoodButton(object sender, EventArgs e)
+        {
+            Globals.RemoveMode = false;
+            Globals.AddFoodMode = true;
+            Globals.AddBookMode = false;
+            DisplayNeeded(Globals.AddFoodMode, Globals.AddBookMode, Globals.RemoveMode);
+        }
+        private void RemoveButton(object sender, EventArgs e)
+        {
+            Globals.RemoveMode = true;
+            Globals.AddFoodMode = false;
+            Globals.AddBookMode = false;
+            DisplayNeeded(Globals.AddFoodMode, Globals.AddBookMode, Globals.RemoveMode);
+        }
+
+        private void buttonAddConfirm_Click(object sender, EventArgs e)
+        {
+            //add food mode
+            if (Globals.AddFoodMode)
+            {
+                try
+                {
+                    string name = textboxName.Text;
+
+                    double price = double.Parse(textBoxPrice.Text);
+
+                    string date = textBoxDate.Text;
+
+                    int day = int.Parse("" + date[0] + date[1]);
+                    int month = int.Parse("" + date[3] + date[4]);
+                    int year = int.Parse("" + date[6] + date[7] + date[8] + date[9]);
+                    Date Date = new Date(day, month, year);
+
+                    string country = textBoxCountry.Text;
+
+                    date = txtboxDateEnd_Pages.Text;
+                    day = int.Parse("" + date[0] + date[1]);
+                    month = int.Parse("" + date[3] + date[4]);
+                    year = int.Parse("" + date[6] + date[7] + date[8] + date[9]);
+                    Date ExpireDate = new Date(day, month, year);
+
+                    int amountleft = int.Parse(txtboxAuthor_Amount.Text);
+
+                    string measure = txtboxMeasure_House.Text;
+
+                    string description = textBoxDescryption.Text;
+
+                    FoodProducts Food = new FoodProducts(price, name, Date, country);
+                    Food.amountLeft = amountleft;
+                    Food.description = description;
+                    Food.measure = measure;
+                    Food.expireDate = ExpireDate;
+                    int n = Globals.Food.Count;
+                    Globals.Food.Add(Food);
+                    dataGridView1.Rows.Add(Globals.Food[n].name, "Food", Globals.Food[n].date.Print(),
+                    Globals.Food[n].price, Globals.Food[n].country, Globals.Food[n].description);
+                }
+                catch
+                {
+                    MessageBox.Show("Enter parameters as asked, please");
+                    textboxName.Text = "";
+                    textBoxPrice.Text = "";
+                    textBoxDate.Text = "";
+                    textBoxCountry.Text = "";
+                    txtboxDateEnd_Pages.Text = "";
+                    txtboxAuthor_Amount.Text = "";
+                    txtboxMeasure_House.Text = "";
+                }
+            }
+
+            //add book mode
+            else if (Globals.AddBookMode)
+            {
+                try
+                {
+                    string name = textboxName.Text;
+                    double price = double.Parse(textBoxPrice.Text);
+                    string date = textBoxDate.Text;
+                    int day = int.Parse("" + date[0] + date[1]);
+                    int month = int.Parse("" + date[3] + date[4]);
+                    int year = int.Parse("" + date[6] + date[7] + date[8] + date[9]);
+                    Date Date = new Date(day, month, year);
+                    string country = textBoxCountry.Text;
+                    int pages = int.Parse(txtboxDateEnd_Pages.Text);
+                    string author = txtboxAuthor_Amount.Text;
+                    string pubhouse = txtboxMeasure_House.Text;
+                    string description = textBoxDescryption.Text;
+                    Books book = new Books(price, name, Date, country);
+                    book.author = author;
+                    book.description = description;
+                    book.amountPages = pages;
+                    book.pubHouse = pubhouse;
+                    int n = Globals.Books.Count;
+                    Globals.Books.Add(book);
+                    dataGridView1.Rows.Add(Globals.Books[n].name, "Book", Globals.Books[n].date.Print(),
+                    Globals.Books[n].price, Globals.Books[n].country, Globals.Books[n].description);
+                }
+                catch
+                {
+                    MessageBox.Show("Enter parameters as asked, please");
+                    textboxName.Text = "";
+                    textBoxPrice.Name = "";
+                    textBoxDate.Text = "";
+                    textBoxDescryption.Text = "";
+                    textBoxCountry.Text = "";
+                    txtboxDateEnd_Pages.Text = "";
+                    txtboxAuthor_Amount.Text = "";
+                    txtboxMeasure_House.Text = "";
+                }
+            }
+
+            //error
+            else
+            {
+                MessageBox.Show("No mode selected, try pressing some buttons");
+            }
+        }
+        void DisplayNeeded(bool food,bool book, bool remove)
+        {
+            //if remove mode
+            textboxRow.Visible = remove;
+            lableRow.Visible = remove;
+
+            //common for food and book
+            textboxName.Visible = food || book;
+            labelName.Visible = food || book;
+
+            textBoxCountry.Visible = food || book;
+            labelCountry.Visible = food || book;
+
+            textBoxDate.Visible = food|| book;
+            labelDate.Visible = food || book;
+
+            textBoxPrice.Visible = food || book;
+            labelPrice.Visible = food || book;
+
+            textBoxDescryption.Visible = food || book;
+            labelDescription.Visible = food || book;
+
+            //not so common but common for food and book
+            txtboxDateEnd_Pages.Visible = food || book;
+            labelPages_Date.Visible = food || book;
+
+            txtboxAuthor_Amount.Visible = food || book;
+            labelAuthor_Amount.Visible= food || book;
+
+            txtboxMeasure_House.Visible = food || book;
+            labelHouse_Measure.Visible = food || book;
+
+            //personalised
+            if (book) { labelPages_Date.Text = "Pages am-nt: "; }
+            if (food) { labelPages_Date.Text = "Expire date: "; }
+
+            if (book) { labelAuthor_Amount.Text = "Author: "; }
+            if (food) { labelAuthor_Amount.Text = "Amount: "; }
+
+            if (book) { labelHouse_Measure.Text = "Publisher: "; }
+            if (food) { labelHouse_Measure.Text = "Measure: "; }
+
+            //buttons
+            buttonAddConfirm.Visible = food || book;
+            buttonRemoveConfirm.Visible = remove;
+        }
+
+        private void buttonRemoveConfirm_Click(object sender, EventArgs e)
+        {
+            //remove mode
+            if (Globals.RemoveMode)
+            {
+
+                try
+                {
+                    int n = int.Parse(textboxRow.Text) - 1;
+                    dataGridView1.Rows.RemoveAt(n);
+                    textboxRow.Text = "";
+                    MessageBox.Show("Deleted");
+                }
+                catch (Exception ex)
+                {
+                    if (dataGridView1.RowCount - 1 == 0)
+                    {
+                        MessageBox.Show("Nothing to delete");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Enter row number in textbox please. It must be from 1 to " + (dataGridView1.RowCount - 1));
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No mode selected, try pressing some buttons");
             }
         }
     }

@@ -12,7 +12,7 @@ namespace tovar
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new List());
 
         }
     }
@@ -65,6 +65,19 @@ namespace tovar
             this.date = date;
             this.country = country;
         }
+        public string displayInfo()
+        {
+            string result = "";
+            result = result + "Name: " + name + "\n";
+            result = result + "Price: " + price + "\n";
+            result = result + "Country from: " + country + "\n";
+            result = result + "Date packed: " + date.Print() + "\n";
+            result = result + "Expire date: " + expireDate.Print() + "\n";
+            result = result + "Measure: " + measure + "\n";
+            result = result + "Amount left: " + amountLeft + "\n";
+            result = result + "Description: " + description;
+            return result;
+        }
     }
     class Books : Goods
     {
@@ -82,10 +95,26 @@ namespace tovar
             this.date = date;
             this.country = country;
         }
+        public string displayInfo()
+        {
+            string result = "";
+            result = result + "Name: " + name + "\n";
+            result = result + "Author: " + author + "\n";
+            result = result + "Price: " + price + "\n";
+            result = result + "Country from: " + country + "\n";
+            result = result + "Date published: " + date.Print() + "\n";
+            result = result + "Amount of pages: " + amountPages + "\n";
+            result = result + "Publishing House: " + pubHouse + "\n";
+            result = result + "Description: " + description;
+            return result;
+        }
     }
-    static class GlobalLists
+    static class Globals
     {
         public static List<FoodProducts> Food = new List<FoodProducts>();
         public static List<Books> Books = new List<Books>();
+        public static bool RemoveMode = true;
+        public static bool AddBookMode = false;
+        public static bool AddFoodMode = false;
     }
 }

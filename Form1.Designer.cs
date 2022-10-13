@@ -1,6 +1,6 @@
 ﻿namespace tovar
 {
-    partial class Form1
+    partial class List
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(List));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,18 +37,29 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.NewBookButton = new System.Windows.Forms.ToolStripButton();
+            this.NewFoodButton = new System.Windows.Forms.ToolStripButton();
+            this.RemoveProductButton = new System.Windows.Forms.ToolStripButton();
+            this.textboxRow = new System.Windows.Forms.TextBox();
+            this.textboxName = new System.Windows.Forms.TextBox();
+            this.textBoxPrice = new System.Windows.Forms.TextBox();
+            this.textBoxDate = new System.Windows.Forms.TextBox();
+            this.textBoxCountry = new System.Windows.Forms.TextBox();
+            this.txtboxDateEnd_Pages = new System.Windows.Forms.TextBox();
+            this.txtboxAuthor_Amount = new System.Windows.Forms.TextBox();
+            this.txtboxMeasure_House = new System.Windows.Forms.TextBox();
+            this.textBoxDescryption = new System.Windows.Forms.TextBox();
+            this.lableRow = new System.Windows.Forms.Label();
+            this.buttonAddConfirm = new System.Windows.Forms.Button();
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelCountry = new System.Windows.Forms.Label();
+            this.labelDate = new System.Windows.Forms.Label();
+            this.labelAuthor_Amount = new System.Windows.Forms.Label();
+            this.labelPrice = new System.Windows.Forms.Label();
+            this.labelHouse_Measure = new System.Windows.Forms.Label();
+            this.labelPages_Date = new System.Windows.Forms.Label();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.buttonRemoveConfirm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +74,7 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
-            this.dataGridView1.Location = new System.Drawing.Point(0, 38);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 28);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(943, 291);
@@ -104,132 +115,253 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3});
+            this.NewBookButton,
+            this.NewFoodButton,
+            this.RemoveProductButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(955, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // NewBookButton
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(88, 22);
-            this.toolStripButton1.Text = "Add new book";
+            this.NewBookButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.NewBookButton.Image = ((System.Drawing.Image)(resources.GetObject("NewBookButton.Image")));
+            this.NewBookButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NewBookButton.Name = "NewBookButton";
+            this.NewBookButton.Size = new System.Drawing.Size(88, 22);
+            this.NewBookButton.Text = "Add new book";
             // 
-            // toolStripButton2
+            // NewFoodButton
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(131, 22);
-            this.toolStripButton2.Text = "Add new food product";
+            this.NewFoodButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.NewFoodButton.Image = ((System.Drawing.Image)(resources.GetObject("NewFoodButton.Image")));
+            this.NewFoodButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NewFoodButton.Name = "NewFoodButton";
+            this.NewFoodButton.Size = new System.Drawing.Size(131, 22);
+            this.NewFoodButton.Text = "Add new food product";
             // 
-            // toolStripButton3
+            // RemoveProductButton
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(99, 22);
-            this.toolStripButton3.Text = "Remove product";
+            this.RemoveProductButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.RemoveProductButton.Image = ((System.Drawing.Image)(resources.GetObject("RemoveProductButton.Image")));
+            this.RemoveProductButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RemoveProductButton.Name = "RemoveProductButton";
+            this.RemoveProductButton.Size = new System.Drawing.Size(99, 22);
+            this.RemoveProductButton.Text = "Remove product";
             // 
-            // textBox1
+            // textboxRow
             // 
-            this.textBox1.Location = new System.Drawing.Point(0, 335);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(278, 23);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Enter here";
+            this.textboxRow.Location = new System.Drawing.Point(0, 367);
+            this.textboxRow.Name = "textboxRow";
+            this.textboxRow.Size = new System.Drawing.Size(69, 23);
+            this.textboxRow.TabIndex = 2;
             // 
-            // textBox2
+            // textboxName
             // 
-            this.textBox2.Location = new System.Drawing.Point(363, 335);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(67, 23);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "Name here";
+            this.textboxName.Location = new System.Drawing.Point(348, 349);
+            this.textboxName.Name = "textboxName";
+            this.textboxName.Size = new System.Drawing.Size(67, 23);
+            this.textboxName.TabIndex = 3;
+            this.textboxName.Visible = false;
             // 
-            // textBox3
+            // textBoxPrice
             // 
-            this.textBox3.Location = new System.Drawing.Point(451, 335);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(67, 23);
-            this.textBox3.TabIndex = 4;
-            this.textBox3.Text = "Price here";
+            this.textBoxPrice.Location = new System.Drawing.Point(478, 349);
+            this.textBoxPrice.Name = "textBoxPrice";
+            this.textBoxPrice.Size = new System.Drawing.Size(67, 23);
+            this.textBoxPrice.TabIndex = 4;
+            this.textBoxPrice.Visible = false;
             // 
-            // textBox4
+            // textBoxDate
             // 
-            this.textBox4.Location = new System.Drawing.Point(537, 335);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(67, 23);
-            this.textBox4.TabIndex = 5;
-            this.textBox4.Text = "date here";
+            this.textBoxDate.Location = new System.Drawing.Point(636, 349);
+            this.textBoxDate.Name = "textBoxDate";
+            this.textBoxDate.Size = new System.Drawing.Size(67, 23);
+            this.textBoxDate.TabIndex = 5;
+            this.textBoxDate.Visible = false;
             // 
-            // textBox5
+            // textBoxCountry
             // 
-            this.textBox5.Location = new System.Drawing.Point(621, 335);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(67, 23);
-            this.textBox5.TabIndex = 6;
-            this.textBox5.Text = "country here";
+            this.textBoxCountry.Location = new System.Drawing.Point(781, 349);
+            this.textBoxCountry.Name = "textBoxCountry";
+            this.textBoxCountry.Size = new System.Drawing.Size(67, 23);
+            this.textBoxCountry.TabIndex = 6;
+            this.textBoxCountry.Visible = false;
             // 
-            // textBox6
+            // txtboxDateEnd_Pages
             // 
-            this.textBox6.Location = new System.Drawing.Point(363, 374);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(137, 23);
-            this.textBox6.TabIndex = 7;
-            this.textBox6.Text = "Choose what to add first";
+            this.txtboxDateEnd_Pages.Location = new System.Drawing.Point(348, 435);
+            this.txtboxDateEnd_Pages.Name = "txtboxDateEnd_Pages";
+            this.txtboxDateEnd_Pages.Size = new System.Drawing.Size(67, 23);
+            this.txtboxDateEnd_Pages.TabIndex = 7;
+            this.txtboxDateEnd_Pages.Visible = false;
             // 
-            // textBox7
+            // txtboxAuthor_Amount
             // 
-            this.textBox7.Location = new System.Drawing.Point(674, 374);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(137, 23);
-            this.textBox7.TabIndex = 8;
-            this.textBox7.Text = "Choose what to add first";
+            this.txtboxAuthor_Amount.Location = new System.Drawing.Point(621, 435);
+            this.txtboxAuthor_Amount.Name = "txtboxAuthor_Amount";
+            this.txtboxAuthor_Amount.Size = new System.Drawing.Size(67, 23);
+            this.txtboxAuthor_Amount.TabIndex = 8;
+            this.txtboxAuthor_Amount.Visible = false;
             // 
-            // textBox8
+            // txtboxMeasure_House
             // 
-            this.textBox8.Location = new System.Drawing.Point(517, 374);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(137, 23);
-            this.textBox8.TabIndex = 9;
-            this.textBox8.Text = "Choose what to add first";
+            this.txtboxMeasure_House.Location = new System.Drawing.Point(479, 435);
+            this.txtboxMeasure_House.Name = "txtboxMeasure_House";
+            this.txtboxMeasure_House.Size = new System.Drawing.Size(67, 23);
+            this.txtboxMeasure_House.TabIndex = 9;
+            this.txtboxMeasure_House.Visible = false;
             // 
-            // textBox9
+            // textBoxDescryption
             // 
-            this.textBox9.Location = new System.Drawing.Point(711, 335);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 23);
-            this.textBox9.TabIndex = 10;
-            this.textBox9.Text = "Description here";
+            this.textBoxDescryption.Location = new System.Drawing.Point(775, 435);
+            this.textBoxDescryption.Name = "textBoxDescryption";
+            this.textBoxDescryption.Size = new System.Drawing.Size(67, 23);
+            this.textBoxDescryption.TabIndex = 10;
+            this.textBoxDescryption.Visible = false;
             // 
-            // Form1
+            // lableRow
+            // 
+            this.lableRow.AutoSize = true;
+            this.lableRow.Location = new System.Drawing.Point(0, 349);
+            this.lableRow.Name = "lableRow";
+            this.lableRow.Size = new System.Drawing.Size(78, 15);
+            this.lableRow.TabIndex = 11;
+            this.lableRow.Text = "Row number:";
+            // 
+            // buttonAddConfirm
+            // 
+            this.buttonAddConfirm.Location = new System.Drawing.Point(864, 385);
+            this.buttonAddConfirm.Name = "buttonAddConfirm";
+            this.buttonAddConfirm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.buttonAddConfirm.Size = new System.Drawing.Size(79, 45);
+            this.buttonAddConfirm.TabIndex = 12;
+            this.buttonAddConfirm.Text = "Confirm";
+            this.buttonAddConfirm.UseVisualStyleBackColor = true;
+            this.buttonAddConfirm.Visible = false;
+            this.buttonAddConfirm.Click += new System.EventHandler(this.buttonAddConfirm_Click);
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(303, 352);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(42, 15);
+            this.labelName.TabIndex = 13;
+            this.labelName.Text = "Name:";
+            this.labelName.Visible = false;
+            // 
+            // labelCountry
+            // 
+            this.labelCountry.AutoSize = true;
+            this.labelCountry.Location = new System.Drawing.Point(722, 352);
+            this.labelCountry.Name = "labelCountry";
+            this.labelCountry.Size = new System.Drawing.Size(53, 15);
+            this.labelCountry.TabIndex = 14;
+            this.labelCountry.Text = "Country:";
+            this.labelCountry.Visible = false;
+            // 
+            // labelDate
+            // 
+            this.labelDate.AutoSize = true;
+            this.labelDate.Location = new System.Drawing.Point(551, 352);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(79, 15);
+            this.labelDate.TabIndex = 15;
+            this.labelDate.Text = "Packing Date:";
+            this.labelDate.Visible = false;
+            // 
+            // labelAuthor_Amount
+            // 
+            this.labelAuthor_Amount.AutoSize = true;
+            this.labelAuthor_Amount.Location = new System.Drawing.Point(551, 438);
+            this.labelAuthor_Amount.Name = "labelAuthor_Amount";
+            this.labelAuthor_Amount.Size = new System.Drawing.Size(89, 15);
+            this.labelAuthor_Amount.TabIndex = 16;
+            this.labelAuthor_Amount.Text = "Author amount";
+            this.labelAuthor_Amount.Visible = false;
+            // 
+            // labelPrice
+            // 
+            this.labelPrice.AutoSize = true;
+            this.labelPrice.Location = new System.Drawing.Point(430, 352);
+            this.labelPrice.Name = "labelPrice";
+            this.labelPrice.Size = new System.Drawing.Size(36, 15);
+            this.labelPrice.TabIndex = 17;
+            this.labelPrice.Text = "Price:";
+            this.labelPrice.Visible = false;
+            // 
+            // labelHouse_Measure
+            // 
+            this.labelHouse_Measure.AutoSize = true;
+            this.labelHouse_Measure.Location = new System.Drawing.Point(415, 438);
+            this.labelHouse_Measure.Name = "labelHouse_Measure";
+            this.labelHouse_Measure.Size = new System.Drawing.Size(89, 15);
+            this.labelHouse_Measure.TabIndex = 18;
+            this.labelHouse_Measure.Text = "House measure";
+            this.labelHouse_Measure.Visible = false;
+            // 
+            // labelPages_Date
+            // 
+            this.labelPages_Date.AutoSize = true;
+            this.labelPages_Date.Location = new System.Drawing.Point(264, 438);
+            this.labelPages_Date.Name = "labelPages_Date";
+            this.labelPages_Date.Size = new System.Drawing.Size(64, 15);
+            this.labelPages_Date.TabIndex = 19;
+            this.labelPages_Date.Text = "pages date";
+            this.labelPages_Date.Visible = false;
+            // 
+            // labelDescription
+            // 
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Location = new System.Drawing.Point(694, 438);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(67, 15);
+            this.labelDescription.TabIndex = 20;
+            this.labelDescription.Text = "Description";
+            this.labelDescription.Visible = false;
+            // 
+            // buttonRemoveConfirm
+            // 
+            this.buttonRemoveConfirm.Location = new System.Drawing.Point(99, 367);
+            this.buttonRemoveConfirm.Name = "buttonRemoveConfirm";
+            this.buttonRemoveConfirm.Size = new System.Drawing.Size(71, 23);
+            this.buttonRemoveConfirm.TabIndex = 21;
+            this.buttonRemoveConfirm.Text = "Confirm";
+            this.buttonRemoveConfirm.UseVisualStyleBackColor = true;
+            this.buttonRemoveConfirm.Click += new System.EventHandler(this.buttonRemoveConfirm_Click);
+            // 
+            // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 489);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.buttonRemoveConfirm);
+            this.Controls.Add(this.labelDescription);
+            this.Controls.Add(this.labelPages_Date);
+            this.Controls.Add(this.labelHouse_Measure);
+            this.Controls.Add(this.labelPrice);
+            this.Controls.Add(this.labelAuthor_Amount);
+            this.Controls.Add(this.labelDate);
+            this.Controls.Add(this.labelCountry);
+            this.Controls.Add(this.labelName);
+            this.Controls.Add(this.buttonAddConfirm);
+            this.Controls.Add(this.lableRow);
+            this.Controls.Add(this.textBoxDescryption);
+            this.Controls.Add(this.txtboxMeasure_House);
+            this.Controls.Add(this.txtboxAuthor_Amount);
+            this.Controls.Add(this.txtboxDateEnd_Pages);
+            this.Controls.Add(this.textBoxCountry);
+            this.Controls.Add(this.textBoxDate);
+            this.Controls.Add(this.textBoxPrice);
+            this.Controls.Add(this.textboxName);
+            this.Controls.Add(this.textboxRow);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "List";
+            this.Text = "List of products";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -248,17 +380,28 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private ToolStrip toolStrip1;
-        private ToolStripButton toolStripButton1;
-        private ToolStripButton toolStripButton2;
-        private ToolStripButton toolStripButton3;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
-        private TextBox textBox8;
-        private TextBox textBox9;
+        private ToolStripButton NewBookButton;
+        private ToolStripButton NewFoodButton;
+        private ToolStripButton RemoveProductButton;
+        private TextBox textboxRow;
+        private TextBox textboxName;
+        private TextBox textBoxPrice;
+        private TextBox textBoxDate;
+        private TextBox textBoxCountry;
+        private TextBox txtboxDateEnd_Pages;
+        private TextBox txtboxAuthor_Amount;
+        private TextBox txtboxMeasure_House;
+        private TextBox textBoxDescryption;
+        private Label lableRow;
+        private Button buttonAddConfirm;
+        private Label labelName;
+        private Label labelCountry;
+        private Label labelDate;
+        private Label labelAuthor_Amount;
+        private Label labelPrice;
+        private Label labelHouse_Measure;
+        private Label labelPages_Date;
+        private Label labelDescription;
+        private Button buttonRemoveConfirm;
     }
 }
